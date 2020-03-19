@@ -1,6 +1,9 @@
-class Item {
-  var id;
-  var name;
+import 'package:flutter/widgets.dart';
 
-  Item(this.id, this.name);
+class Item {
+  int id;
+  String name;
+  String description;
+
+  Item({this.id, @required this.name, @required this.description});
 }

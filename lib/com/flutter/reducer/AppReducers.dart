@@ -1,14 +1,6 @@
-import 'package:crud_test/com/flutter/action/AppActions.dart';
-import 'package:crud_test/com/flutter/reducer/CartReducers.dart';
-import 'package:crud_test/com/flutter/state/AppState.dart';
+import 'package:crud_test/com/flutter/reducer/ItemReducer.dart';
+import 'package:crud_test/com/flutter/model/models.dart';
 
-AppState appReducers(AppState items, dynamic action) {
-  switch (action) {
-    case Actions.AddItemAction:
-      return addItem(items, action);
-    case Actions.ToggleItemStateAction:
-      return toggleItemState(items, action);
-  }
-
-  return items;
+AppState appStateReducers(AppState state, dynamic action) {
+  return AppState(items: itemsReducer(state.items, action));
 }
