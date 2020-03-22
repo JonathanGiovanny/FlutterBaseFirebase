@@ -1,1 +1,1 @@
-enum Actions { AddItemAction, ToggleItemStateAction }
+//enum Actions { AddItemAction, ToggleItemStateAction }

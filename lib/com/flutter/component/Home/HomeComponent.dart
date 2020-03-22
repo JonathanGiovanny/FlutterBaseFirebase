@@ -1,4 +1,5 @@
 import 'package:crud_test/com/flutter/component/Home/ListComponent.dart';
+import 'package:crud_test/com/flutter/util/Constants.dart';
 import 'package:flutter/material.dart';
 
 class HomeComponent extends StatelessWidget {
@@ -6,14 +7,10 @@ class HomeComponent extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color.fromRGBO(58, 66, 86, 1.0),
+      backgroundColor: Constants.BG_COLOR,
       appBar: appBar,
       body: ListComponent(),
-      floatingActionButton: FloatingActionButton(
-          child: Icon(Icons.add),
-          onPressed: () {
-            Navigator.pushNamed(context, '/create-element');
-          }),
+      floatingActionButton: floatingButton(context),
     );
   }
 
@@ -21,7 +18,7 @@ class HomeComponent extends StatelessWidget {
     centerTitle: true,
     title: Text('TODO List'),
     elevation: 0.1,
-    backgroundColor: Color.fromRGBO(58, 66, 86, 1.0),
+    backgroundColor: Constants.BG_COLOR,
     actions: <Widget>[
       IconButton(
         icon: Icon(Icons.menu),
@@ -29,4 +26,15 @@ class HomeComponent extends StatelessWidget {
       )
     ],
   );
+
+  floatingButton(BuildContext context) => FloatingActionButton(
+      backgroundColor: Colors.greenAccent,
+      child: Icon(
+        Icons.add,
+        color: Constants.BG_COLOR,
+        size: 30,
+      ),
+      onPressed: () {
+        Navigator.of(context).pushNamed('/create-element');
+      });
 }
