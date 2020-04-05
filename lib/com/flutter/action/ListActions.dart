@@ -18,3 +18,9 @@ class DeleteItemAction {
 
   DeleteItemAction(this.position);
 }
+
+class GetListItems {
+  final List<Item> items;
+
+  GetListItems(this.items);
+}

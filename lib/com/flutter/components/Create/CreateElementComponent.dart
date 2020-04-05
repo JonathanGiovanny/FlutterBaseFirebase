@@ -14,15 +14,15 @@ class CreateElementComponent extends StatelessWidget {
   Widget build(BuildContext context) {
     return WillPopScope(
       child: Scaffold(
-        appBar: appBar(context),
-        body: createComponent(),
+        appBar: _appBar(context),
+        body: _createComponent(),
         backgroundColor: Constants.BG_COLOR,
       ),
-      onWillPop: () => backAction(context),
+      onWillPop: () => _backAction(context),
     );
   }
 
-  appBar(context) => AppBar(
+  _appBar(context) => AppBar(
       title: Text(
         'Create note',
         style: TextStyle(
@@ -36,78 +36,45 @@ class CreateElementComponent extends StatelessWidget {
       leading: IconButton(
         icon: Icon(Icons.keyboard_arrow_left, color: Colors.white, size: 30.0),
         onPressed: () {
-          backAction(context);
+          _backAction(context);
         },
       ),
       elevation: 0.1);
 
-  createComponent() => Form(
+  _createComponent() => Form(
         key: _formKey,
         child: Container(
           padding: EdgeInsets.all(12),
-          child: createForm(),
+          child: _createForm(),
         ),
       );
 
-  createForm() => Column(
+  _createForm() => Column(
         children: <Widget>[
           TextFormField(
             decoration: InputDecoration(labelText: 'Title'),
             style: TextStyle(color: Colors.white, fontSize: 16),
             controller: _titleController,
-            validator: (value) {
-              /*if (value.isEmpty) {
-              return 'Please enter some text';
-            }*/
-              return null;
-            },
+            validator: _formValidator,
           ),
-          Container(
-            padding: EdgeInsets.only(top: 20),
-            child: TextFormField(
-              decoration: InputDecoration(
-                labelText: 'Description',
-                filled: true,
-              ),
-              style: TextStyle(color: Colors.white, fontSize: 16),
-              controller: _descriptionController,
-              keyboardType: TextInputType.multiline,
-              maxLines: null,
-              validator: (value) {
-                /*if (value.isEmpty) {
-              return 'Please enter some text';
-            }*/
-                return null;
-              },
+          SizedBox(
+            height: 20.0,
+          ),
+          TextFormField(
+            decoration: InputDecoration(
+              labelText: 'Description',
+              filled: true,
             ),
+            style: TextStyle(color: Colors.white, fontSize: 16),
+            controller: _descriptionController,
+            keyboardType: TextInputType.multiline,
+            maxLines: null,
+            validator: _formValidator,
           ),
         ],
       );
 
-  final createComponent2 = DefaultTextStyle.merge(
-    style: TextStyle(
-      color: Colors.black,
-      fontWeight: FontWeight.w800,
-      fontFamily: 'Roboto',
-      letterSpacing: 0.5,
-      fontSize: 18,
-      height: 2,
-    ),
-    child: Container(
-      padding: EdgeInsets.all(20),
-      child: Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
-        Column(
-          children: [
-            Icon(Icons.kitchen, color: Colors.green[500]),
-            Text('PREP:'),
-            Text('25 min'),
-          ],
-        ),
-      ]),
-    ),
-  );
-
-  backAction(context) {
+  _backAction(context) {
     StoreProvider.of<AppState>(context).dispatch(
       AddItemAction(
         Item(
@@ -117,5 +84,12 @@ class CreateElementComponent extends StatelessWidget {
       ),
     );
     Navigator.pop(context);
+  }
+
+  String _formValidator(String value) {
+    /*if (value.isEmpty) {
+      return 'Please enter some text';
+    }*/
+    return null;
   }
 }

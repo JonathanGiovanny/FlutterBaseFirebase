@@ -1,11 +1,11 @@
-import 'package:crud_test/com/flutter/component/Home/ListComponent.dart';
+import 'package:crud_test/com/flutter/components/Home/ListComponent.dart';
 import 'package:crud_test/com/flutter/util/Constants.dart';
 import 'package:flutter/material.dart';
 
 class HomeComponent extends StatelessWidget {
-  /// This method is rerun every time setState is called
   @override
   Widget build(BuildContext context) {
+    print("Build- HomeComponent");
     return Scaffold(
       backgroundColor: Constants.BG_COLOR,
       appBar: appBar,

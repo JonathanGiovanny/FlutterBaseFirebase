@@ -17,4 +17,7 @@ class Item {
   String toString() {
     return 'Item {id: $id, name: $name, description: $description, relevance: $relevance}';
   }
+
+  factory Item.fromJson(Map<String, dynamic> json) => Item(
+      id: json['id'], name: json['name'], description: json['description']);
 }

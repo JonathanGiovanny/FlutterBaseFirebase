@@ -15,7 +15,7 @@ class ItemService {
       return existingItems;
     } else {
       List<Item> items = List.from(existingItems)..add(newItem);
-      return recalculateRelevance(items);
+      return _recalculateRelevance(items);
     }
   }
 
@@ -32,28 +32,28 @@ class ItemService {
     var items = List<Item>.from(existingItems);
     final Item item = removeItem(items, oldIndex);
     items.insert(newIndex, item);
-    return recalculateRelevance(items);
+    return _recalculateRelevance(items);
   }
 
   List<Item> deleteItem(List<Item> existingItems, int pos) {
     var items = List<Item>.from(existingItems);
     removeItem(items, pos);
-    return recalculateRelevance(items);
+    return _recalculateRelevance(items);
   }
 
   Item removeItem(List<Item> items, int pos) => items.removeAt(pos);
 
-  List<Item> recalculateRelevance(List<Item> items) {
+  List<Item> _recalculateRelevance(List<Item> items) {
     return Iterable<int>.generate(items.length)
         .map((index) => Item(
             id: items[index].id,
             name: items[index].name,
             description: items[index].description,
-            relevance: calculateRelevance(index)))
+            relevance: _calculateRelevance(index)))
         .toList();
   }
 
-  Relevance calculateRelevance(int index) {
+  Relevance _calculateRelevance(int index) {
     if ((index + 1) <= 3) {
       return Relevance.LEVEL_HIGH;
     } else if ((index + 1) <= 9) {

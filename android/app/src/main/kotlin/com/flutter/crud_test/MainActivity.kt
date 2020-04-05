@@ -1,4 +1,4 @@
-package com.example.crud_test_2
+package com.flutter.crud_test
 
 import androidx.annotation.NonNull;
 import io.flutter.embedding.android.FlutterActivity
